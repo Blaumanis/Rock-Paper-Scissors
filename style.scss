@@ -30,6 +30,7 @@ body {
     flex-direction: column;
     padding: 1rem;
     gap: 2.5rem;
+    height: 100vh;
 }
 
 // HEADER
@@ -315,9 +316,6 @@ body {
 
 // MEDIA QUERIES
 @media (max-width: 500px) {
-    .wrapper {
-        height: 100vh;
-    }
     .header {
         width: 100%;
     }
