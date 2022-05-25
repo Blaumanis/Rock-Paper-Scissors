@@ -1,0 +1,509 @@
+// ---VARIABLES---
+
+// ### Primary
+$Orange: hsl(26, 100%, 55%);
+$PaleOrange: hsl(25, 100%, 94%);
+
+// ### Neutral
+$VeryDarkBlue: hsl(220, 13%, 13%);
+$DarkGrayishBlue: hsl(219, 9%, 45%);
+$GrayishBlue: hsl(220, 14%, 75%);
+$LightGrayishBlue: hsl(228, 4%, 78%);
+$White: hsl(0, 0%, 100%);
+$Black: hsl(0, 0%, 0%);
+
+// ###Typography
+$KumbhSans: 'Kumbh Sans', sans-serif;
+
+// ###MIXINS
+@mixin flex($dp, $jc, $ai){
+    display: $dp;
+    justify-content: $jc;
+    align-items: $ai;
+}
+
+// ---ROOT---
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $KumbhSans;
+}
+
+body{
+    max-width: 1440px;
+    min-width: 375px;
+    position: relative;
+}
+
+// ---HEADER---
+.header{
+    padding: 1rem;
+    position: relative;
+}
+.nav{
+    @include flex(flex, space-around, center);
+}
+.logo-container{
+    @include flex(flex, center ,center );
+    gap: 1rem;
+}
+.hamburger{
+    display: none;
+    color: $DarkGrayishBlue;
+    font-size: 1.25rem;
+    padding-top: 4px;
+    transition: color .2s ease-in;
+    &:hover{
+        color: $Black;
+    }
+}
+
+.links-container{
+    @include flex(flex, space-around, center);
+    .logo{
+        padding-right: 2rem;
+    }
+    li{
+        list-style: none;
+        padding: 0 1rem;
+    }
+    a{
+        color: $DarkGrayishBlue;
+        text-decoration: none;
+        position: relative;
+
+            &:hover::after{
+                content: '';
+                display: block;
+                position: absolute;
+                bottom: -2.64rem;
+                height: 0.275rem;
+                width: 100%;
+                opacity: 1;
+                background-color: $Orange;
+                transition-duration: .15s;  
+            }
+    }
+}
+
+.cart-container{
+    @include flex(flex, center, center);
+    position: relative;
+    img{
+        cursor: pointer;
+    }
+    .cart-box{
+        @include flex(flex,center ,center );
+        position: relative;
+    }
+    .cart-icon{
+        padding-right: 1.5rem;
+    }
+    .cart-count{
+        position: absolute;
+        left: 15px;
+        top: -5px;
+        font-size: .75rem;
+        background-color: $Orange;
+        padding: 1px 6px;
+        border-radius: 100%;
+        color: $White;
+        display: none;
+    }
+    // cart module
+    .cart-module{
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        width: 370px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0 0 1px 1px $GrayishBlue;
+        padding: 1rem;
+        h3{
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .module-divider{
+            width: 100%;
+            height: 1px;
+            background-color: $GrayishBlue;
+        }
+        .empty-cart{
+            padding: 1rem;
+            color: $DarkGrayishBlue;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-align: center;
+            padding-top: 3.75rem;
+            // display: none;
+        }
+    }
+
+    // cart item info
+    .cart-item-info{
+        @include flex(flex, space-between , center);
+        flex-direction: column;
+        gap: 1rem;
+        display: none;
+        .cart-image{
+            width: 50px;
+            border-radius: 5px;
+        }
+        p, small{
+            color: $DarkGrayishBlue;
+            line-height: 1;
+        }
+        .cart-item-description{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .cart-item-price{
+            display: inline;
+        }
+        .cart-times{
+            padding-left: 0.5rem;
+        }
+        .cart-item-count{
+            font-size: .75rem;
+            padding-right: 0.5rem;
+        }
+        .cart-dollar{
+            color: $Black;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .cart-item-total-price{
+            color: $Black;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        use{
+            cursor: pointer;
+            transition: all 0.2s ease-in;
+            &:hover{
+                fill: $DarkGrayishBlue;
+                color: $DarkGrayishBlue;
+            }
+        }
+    }
+    .checkout-btn{
+        width: 100%;
+        display: block;
+        background-color: $Orange;
+        color: $White;
+        border: none;
+        border-radius: 10px;
+        padding: 1rem;
+        font-weight: 700;
+        margin-top: 1rem;
+        transition: all .2s ease-in;
+        display: none;
+        &:hover{
+            opacity: .75;
+        }
+    }
+    .client-avatar{
+        width: 40px;
+            &:hover{
+                outline: 2px solid $Orange;
+                border-radius: 50%;
+            }
+    }
+}
+
+.open{
+    display: block !important;
+}
+
+.divider{
+    width: 100%;
+    height: 1px;
+    background-color: $GrayishBlue;
+    margin: 2rem auto;
+}
+
+// --- MAIN ---
+.main{
+    @include flex(flex, center, flex-start);
+    padding: 2rem 1rem;
+    gap: 2rem;
+}
+
+.product-photo{
+    width: 100%;
+    @include flex(flex, center, center);
+    flex-direction: column;
+    gap: 1.5rem;
+    img{
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    .thumbnails{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 1rem;
+    }
+    .thumbnail{
+        width: 75px;
+        margin: 0 .5rem;
+        transition: opacity .1s ease-in;
+        outline: 2px solid white;
+        &:hover{
+            opacity: .5;
+            outline: 5px solid $Orange;
+        }
+    }
+    .product-1{
+        width: 400px;
+    }
+}
+
+// --- PRODUCT INFO ---
+.product-information{
+    width: 100%;
+    @include flex(flex, center, flex-start);
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.description-container{
+    width: 70%;
+    .brand-name{
+        text-transform: uppercase;
+        font-weight: 700;
+        color: $Orange;
+    }
+    .product-name{
+        font-size: 3rem;
+        padding: 1rem 0;
+    }
+    .description{
+        color: $DarkGrayishBlue;
+        line-height: 1.5rem;
+    }
+}
+
+.price-container{
+    .price{
+        font-size: 1.75rem;
+        font-weight: 700;
+        display: inline;
+    }
+    .dollar{
+        font-size: 1.75rem;
+        font-weight: 700;
+    }
+    .discount{
+        font-size: 1rem;
+        color: $Orange;
+        background-color: $PaleOrange;
+        padding: 0.3rem 1rem;
+        margin-left: .75rem;
+        border-radius: 5px;
+    }
+    .price-before{
+        padding-left: 1rem;
+        text-decoration: line-through;
+        color: $GrayishBlue;
+    }
+}
+
+// ---ADD TO CART CONTAINER---
+.add-to-cart-container{
+    @include flex(flex, center, center);
+    gap: 1rem;
+}
+
+.button-group{
+    @include flex(flex, center, center);
+    gap: 2rem;
+    padding: 0.2rem 2rem;
+    border-radius: 10px;
+    background-color: hsl(219,14%,95%);
+
+    button{
+        border: none;
+        color: $Orange;
+        font-size: 2.5rem;
+        background-color: hsl(219,14%,95%);
+        cursor: pointer;
+        transition: opacity .3s ease-in;
+        padding-bottom: 10px;
+        &:hover{
+            opacity: .75;
+        }
+    }
+
+    .item-count{
+        font-weight: 700;
+        font-size: 1.25rem;
+    }
+}
+
+.add-to-cart-btn{
+    border: none;
+    background-color: $Orange;
+    padding: 1.28rem 2rem;
+    color: $White;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity .3s ease-in;
+    &:hover{
+        opacity: .75;
+    }
+}
+
+
+// ---FOOTER---
+footer{
+    @include flex(flex, center, center );
+    padding: 2rem 1rem;
+}
+
+@media (max-width: 875px) {
+    .product-information{
+        text-align: center;
+    }
+    .add-to-cart-container{
+        flex-direction: column;
+        width: 100%;
+    }
+    .description-container{
+        width: 100%;
+        .product-name{
+            font-size: 2.5rem;
+
+        }
+    }
+    .price-container{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 795px) {
+    .nav{
+        justify-content: space-between;
+    }
+    .hamburger{
+        display: block;
+    }
+    .links-container li{
+        display: none;
+    }
+    .divider{
+        display: none;
+    }
+    .main{
+        flex-direction: column;
+    }
+    .thumbnails{
+        display: none !important;
+    }
+}
+
+@media (min-width: 795px) {
+    .mobile-menu{
+        display: none !important;
+    }
+}
+
+@media (max-width: 460px) {
+    .add-to-cart-container{
+        flex-direction: column;
+    }
+}
+
+.mobile-menu{
+    position: absolute;
+    width: 80vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: $White;
+    
+
+    li{
+        list-style: none;
+        padding: 1rem;
+        a{
+            text-decoration: none;
+            color: $Black;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+    }
+    img {
+        padding: 1rem;
+        cursor: pointer;
+    }
+}
+
+// photos modal
+.modal-img-container{
+    position: relative;
+}
+.photos-modal{
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 155vh;
+    background-color: rgba(0, 0, 0, 0.65);
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    gap: 1rem;
+
+    .next {
+        position: absolute;
+        top: 50%;
+        right: -10px;
+        width: 20px;
+        cursor: pointer;
+    }
+
+    .previous {
+        position: absolute;
+        top: 50%;
+        left: -10px;
+        width: 20px;
+        cursor: pointer;
+    }
+
+    .modal-product-1{
+        display: block;
+        width: 400px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 200ms transform ease-in-out; 
+    }
+    .modal-thumbnail {
+        cursor: pointer;
+        margin: 0.5rem;
+        border-radius: 20px;
+        width: 80px;
+        outline: none;
+        transition: opacity .1s ease-in;    
+        &:hover{
+            outline: 5px solid $Orange;
+        }
+    }
+}
+.thumbnail-open{
+    outline: 5px solid white !important;
+}
+
+.active {
+    @include flex(flex, center ,center );
+}

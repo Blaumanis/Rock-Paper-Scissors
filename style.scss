@@ -1,0 +1,333 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// VARIABLES
+
+$bg:hsl(214, 47%, 23%) to hsl(237, 49%, 15%);
+$headerOutline: hsl(217, 16%, 45%);
+$scoreText: hsl(229, 64%, 46%);
+$darkText: hsl(229, 25%, 31%);
+
+// MIXINS
+@mixin flex($dp, $jc, $ai){
+    display: $dp;
+    justify-content: $jc;
+    align-items: $ai;
+}
+
+body {
+    max-width: 1366px;
+    min-width: 375px;
+    background: radial-gradient(circle, hsl(214, 47%, 23%) 50%, hsl(237, 49%, 15%) 100%);
+}
+
+// CONTAINER
+.wrapper {
+    @include flex(flex, space-evenly, center);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 2.5rem;
+}
+
+// HEADER
+.header {
+    @include flex(flex, space-between, center);
+    gap: 2rem;
+    border: 5px solid $headerOutline;
+    padding: 1rem;
+    width: 375px;
+    border-radius: .5rem;
+    
+    p {
+        color: #fff;
+        font-size: 1.2rem;
+    }
+
+    .score-box {
+        background-color: #fff;
+        border-radius: .5rem;
+        padding: .5rem 1rem;
+        @include flex(flex, center, center);
+        flex-direction: column;
+        gap: .5rem;
+
+        .score-text {
+            color: $scoreText;
+            font-size: 1rem;
+        }
+
+        .score {
+            font-size: 2rem;
+            color: hsl(229, 25%, 31%);
+        }
+    }
+}
+
+// GAME ICONS
+.game-box {
+    background-image: url('/images/bg-triangle.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 222px;
+    width: 400px;
+    height: 200px;
+    position: relative;
+}
+    .circle {
+        @include flex(flex, center, center);
+        width: 110px;
+        height: 110px;
+        position: absolute;
+        border-radius: 100%;
+        cursor: pointer;
+        transition: transform 200ms linear;
+
+        &:hover {
+            transform: scale(1.05)
+        }
+    }
+
+    .circle div {
+        @include flex(flex, center, center);
+        width: 90px;
+        height: 90px;
+        background-color: #fff;
+        border-radius: 100%;
+    }
+
+    .paper-circle {
+        background: linear-gradient(90deg, hsl(230, 89%, 62%) 50%, hsl(230, 89%, 65%) 100%);
+        right: 75px;
+        top: -25px;
+        box-shadow: 0 2px 2px 2px hsl(230, 89%, 65%);
+    }
+
+    .scissors-circle {
+        background: linear-gradient(90deg, hsl(39, 89%, 49%) 50%, hsl(40, 84%, 53%) 100%);
+        left: 75px;
+        top: -25px;
+        box-shadow: 0 2px 2px 2px hsl(40, 84%, 53%);
+    }
+
+    .rock-circle {
+        background: linear-gradient(90deg, hsl(349, 71%, 52%) 50%, hsl(349, 70%, 56%) 100%);
+        right: 145px;
+        bottom: -5px;
+        box-shadow: 0 2px 2px 2px hsl(349, 70%, 56%);
+    }
+
+// FOOTER
+.footer {
+    @include flex(flex, flex-end, center);
+    gap: 1rem;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+// RESET CONTAINER
+.reset-container {
+    width: 100px;
+    padding: .5rem;
+    border: 2.5px solid $headerOutline;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: all 200ms linear;
+        &:hover {
+            box-shadow: 0 0 1px 1px white;
+        }
+
+    .reset {
+        text-align: center;
+        color: white;
+    }
+}
+
+// RULES CONTAINER
+.rules-container {
+    width: 100px;
+    padding: .5rem;
+    border: 2.5px solid $headerOutline;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: all 200ms linear;
+        &:hover {
+            box-shadow: 0 0 1px 1px white;
+        }
+
+    .rules {
+        text-align: center;
+        color: white;
+    }
+}
+
+
+
+// rules module
+.rules-module {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: white;
+
+    p {
+        font-size: 1.2rem;
+        color: $darkText;
+    }
+
+    .close-icon {
+        width: 12.5px;
+        cursor: pointer;
+    }
+
+    .rules-module-header {
+        @include flex(flex, space-between, center);
+        margin-bottom: 1rem;
+    }
+
+    .image-rules {
+        width: 200px;
+        margin: 0 auto;
+    }
+}
+
+// ON GAME BOX
+.ongame-box {
+    display: none;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+
+    p {
+        color: #fff;
+        text-align: center;
+    }
+
+    .game-info-box {
+        @include flex(flex,center,center);
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .computer {
+        order: 1;
+    }
+
+    .player-icon, .computer-icon {
+        margin: 0 auto;
+        margin-top: 1rem;
+    }
+
+    .computer-icon {
+        background: radial-gradient(circle, hsl(214, 47%, 23%) 25%, hsl(237, 49%, 15%) 75%);
+        width: 110px;
+        height: 110px;
+        border-radius: 100%;
+        order: 1;
+    }
+}
+
+// JS
+
+.active {
+    display: block;
+}
+
+.active-flex {
+    display: flex;
+}
+
+.opacity {
+    filter: opacity(0.5);
+}
+
+.remove {
+    display: none;
+}
+
+.static {
+    position: static;
+}
+
+.is-winner {
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 110px;
+        height: 110px;
+        background-color: transparent;
+        border-radius: 50%;
+        box-shadow: 0 0 0 20px hsla(0, 0%, 100%, 0.09), 0 0 0 40px hsla(0, 0%, 100%, 0.06), 0 0 0 60px hsla(0, 0%, 100%, 0.03);
+    }
+}
+
+.pointer {
+    pointer-events: none;
+}
+
+.btn-play-again {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    border: 1px solid $headerOutline;
+    color: $darkText;
+    cursor: pointer;
+    transition: all 200ms linear;
+    &:hover {
+        box-shadow: 0 0 1px 1px white;
+    }
+}
+
+.game-info {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.pulse {
+    animation: pulse 1500ms infinite linear;
+}
+
+// ANIMATION
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: .75;
+    }
+    100%{
+        transform: scale(1.2);
+        opacity: .5;
+    }
+}
+
+// MEDIA QUERIES
+@media (max-width: 500px) {
+    .wrapper {
+        height: 100vh;
+    }
+    .header {
+        width: 100%;
+    }
+    .footer {
+        justify-content: center;
+    }
+    * {
+        font-size: 97% !important;
+    }
+    .ongame-box {
+        gap: .5rem;
+    }
+}

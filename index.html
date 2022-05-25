@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | Rock, Paper, Scissors</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+
+</head>
+<body>
+<!-- MAIN WRAPPER -->
+  <div class="wrapper" data-set="wrapper">
+
+<!-- HEADER -->
+    <div class="header">
+      <div class="rock-paper-scissors">
+        <p class="rock">ROCK</p>
+        <p class="paper">PAPER</p>
+        <p class="scissors">SCISSORS</p>
+      </div>
+      <div class="score-box">
+        <p class="score-text">SCORE</p>
+        <p class="score" data-set="score">0</p>
+      </div>
+    </div>
+
+<!-- GAME BOX -->
+    <div class="game-box">
+      <!-- PAPER BOX -->
+      <div class="paper-circle circle" data-game-icon="paper">
+        <div class="paper-box">
+          <img src="/images/icon-paper.svg" alt="icon-paper" class="icon-paper">
+        </div>
+      </div>
+      <!-- SCISSORS BOX -->
+      <div class="scissors-circle circle" data-game-icon="scissors">
+        <div class="scissors-box">
+          <img src="/images/icon-scissors.svg" alt="icon-scissors" class="icon-scissors">
+        </div>
+      </div>
+      <!-- ROCK BOX -->
+      <div class="rock-circle circle" data-game-icon="rock">
+        <div class="rock-box">
+          <img src="/images/icon-rock.svg" alt="icon-rock" class="icon-rock">
+        </div>
+      </div>
+    </div>
+
+<!-- ONGAME BOX -->
+    <div class="ongame-box">
+      <div class="picked">
+        <p>YOU PICKED</p>
+        <div class="player-icon"></div>
+      </div>
+      <div class="game-info-box"></div>
+      <div class="computer">
+        <p>HOUSE PICKED</p>
+        <div class="computer-icon"></div>
+      </div>
+    </div>
+
+    <!-- RESET & RULES CONTAINERS -->
+<footer class="footer">
+  <div class="reset-container">
+    <p class="reset">RESET</p>
+  </div>
+  <div class="rules-container" data-set="rules">
+    <p class="rules">RULES</p>
+  </div>
+</footer>
+
+  </div>
+
+
+
+<!-- RULES MODULE -->
+  <div class="rules-module" data-set="rules-module">
+    <div class="rules-module-header">
+      <p>RULES</p>
+      <img src="/images/icon-close.svg" alt="close-icon" class="close-icon" data-set="close">
+    </div>
+    <img src="/images/image-rules.svg" alt="rules" class="image-rules">
+  </div>
+
+</body>
+</html>
