@@ -1,2 +1,3 @@
 # Rock-Paper-Scissors
-gamepsr.netlify.app
+https://gamepsr.netlify.app/
+
